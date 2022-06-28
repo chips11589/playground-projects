@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-api-config
+data:
+    ASPNETCORE_URLS: https://+:8080
+    ASPNETCORE_Kestrel__Certificates__Default__Path: /etc/pfx/keystore.p12

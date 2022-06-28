@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+  labels:
+    app: simple-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-api
+  template:
+    metadata:
+      labels:
+        app: simple-api
+    spec:
+      volumes:
+      - name: ssl
+        secret:
+          secretName: simple-api-certificate
+      containers:
+      - name: simple-api
+        image: chipsacr.azurecr.io/simpleapi:latest
+        volumeMounts:            
+        - name: ssl
+          mountPath: "/etc/pfx"
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+        envFrom:
+          - configMapRef:
+              name: simple-api-config
+          - secretRef:
+              name: simple-api-secrets

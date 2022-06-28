@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-consumer
+  labels:
+    app: simple-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-consumer
+  template:
+    metadata:
+      labels:
+        app: simple-consumer
+    spec:
+      serviceAccount: chips-sa
+      containers:
+      - name: simple-consumer
+        image: chipsacr.azurecr.io/simpleconsumer:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
