@@ -22,10 +22,10 @@ builder.Services.AddAuthentication(
             options.RequireSsl = false;
             options.AuthorizationLockdownEnabled = true;
             options.SendDetailedErrorMessages = true;
-            options.Issuers.Add("https://sts.windows.net/73695d2a-8a88-4cb4-9e96-332954866ca0/");
-            options.Audiences.Add("api://a9e89fbc-3875-4c0c-add0-058a230f6dd9");
+            options.Issuers.Add("https://sts.windows.net/73695d2a-8a88-4cb4-9e96-332954866ca0/"); // tenant id
+            options.Audiences.Add("api://a9e89fbc-3875-4c0c-add0-058a230f6dd9"); // client id
             options.MetadataAddresses.Add(new Uri("https://login.microsoftonline.com/common/.well-known/openid-configuration"));
-            options.WhitelistedServiceIds.AddRange(new string[] { "6543e42e-e44c-4e00-b1fd-de5af396ce31" });
+            options.WhitelistedServiceIds.AddRange(new string[] { "6543e42e-e44c-4e00-b1fd-de5af396ce31" }); // app object id
         }
     );
 

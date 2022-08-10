@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feed-processor
+  labels:
+    app: feed-processor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: feed-processor
+  template:
+    metadata:
+      labels:
+        app: feed-processor
+    spec:
+      containers:
+      - name: feed-processor
+        image: chipsacr.azurecr.io/feedprocessor:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
