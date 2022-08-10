@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KedaServiceBus": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

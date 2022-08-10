@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: message-processor-scaledobject
+  namespace: message-processor
+spec:
+  scaleTargetRef:
+    name: message-processor
+  minReplicaCount: 1
+  triggers:
+  - type: azure-servicebus
+    metadata:
+      queueName: chips-queue-1
+      connectionFromEnv: ServiceBus__ConnectionString
+      messageCount: "5"

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: message-processor
+  labels:
+    app: message-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: message-processor
+  template:
+    metadata:
+      labels:
+        app: message-processor
+    spec:
+      containers:
+      - name: message-processor
+        image: chipsacr.azurecr.io/messageprocessor:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+        envFrom:
+          - secretRef:
+              name: message-processor-secrets
